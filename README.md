@@ -2,7 +2,7 @@
 
 **Alumno:** Demian Agustin Paz Gamboa
 **Carrera:** Tecnicatura Universitaria en Programación (TUP) - UTN FRA  
-**Link del Deploy:** https://sala-de-juegos-progra-4.vercel.app/
+**Link del Deploy:** https://sala-de-juegos-progra-4-git-rama-sprint-1-demiauus-projects.vercel.app
 
 ## Tecnologías Utilizadas
 * Angular (Versión Moderna - Componentes Standalone)
