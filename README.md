@@ -6,7 +6,7 @@
 **Link del Deploy:** https://sala-de-juegos-progra-4-git-rama-sprint-1-demiauus-projects.vercel.app
 
 ## Tecnologías Utilizadas
-* Angular (Versión Moderna - Componentes Standalone)
+* Angular (Versión 21 - Componentes Standalone)
 * Control de Estado con Angular Signals
 * Git / GitHub / Vercel
 
