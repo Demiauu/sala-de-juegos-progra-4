@@ -1,0 +1,9 @@
+.custom-logo {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  cursor: pointer;
+}
+
+.custom-logo:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
