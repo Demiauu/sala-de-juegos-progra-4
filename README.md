@@ -1,20 +1,51 @@
-# Sala de Juegos - TP1 Programación IV
+# 🎮 Sala de Juegos — Trabajo Práctico #1
 
-**Alumno:** Demian Agustin Paz Gamboa
-**Carrera:** Tecnicatura Universitaria en Programación (TUP) - UTN FRA  
-**Link del Deploy:** https://sala-de-juegos-progra-4-git-rama-sprint-2-demiauus-projects.vercel.app
+**Materia:** Programación IV 
+**Institución:** Universidad Tecnológica Nacional (UTN) — Facultad Regional Avellaneda (FRA)
+**Carrera:** Tecnicatura Universitaria en Programación (TUP)
+**Alumno:** Demian Agustin Paz Gamboa  
 
-## Tecnologías Utilizadas
-* Angular (Versión Moderna - Componentes Standalone)
-* Control de Estado con Angular Signals
-* Git / GitHub / Vercel
+🚀 **Link del Deploy Activo (Vercel):** https://sala-de-juegos-progra-4-git-rama-sprint-4-demiauus-projects.vercel.app
 
-## Sprints Desarrollados
+---
 
-### 🔹 Sprint #2
-* **Autenticación con Firebase:** Integración completa de Firebase Authentication para el manejo seguro de usuarios en tiempo real.
-* **Registro de Usuarios:** Se expandió el formulario de registro para capturar `Nombre`, `Apellido`, `Edad`, `Email` y `Contraseña`.
-* **Validaciones:** Implementación de controles estrictos en TypeScript y HTML (como el control estricto de edad $> 0$) para evitar registros vacíos o erróneos antes de impactar en Firebase.
-* **Control de Sesión Reactivo:** Uso de *Angular Signals* para ocultar dinámicamente los botones de Login y Registro una vez iniciada la sesión, mostrando en su lugar el Nombre y Apellido del jugador logueado (`displayName`) y el botón de cierre de sesión.
-* **Sistema de Temas Dinámico (Dark/Light Mode):** Implementación de un switch de cambio de luces que manipula variables CSS nativas a nivel global.
-* **Persistencia con LocalStorage:** Integración con la API del navegador para almacenar la preferencia estética del usuario, logrando que el tema elegido se mantenga incluso al recargar o cerrar la aplicación.
+## 📋 Descripción General
+Aplicación frontend interactiva desarrollada en **Angular** y conectada a **Firebase** como servidor backendEl objetivo de la plataforma es permitir a los usuarios (jugadores) medir sus capacidades cognitivas y motrices a través de una sala integrada con juegos, chat en tiempo real y clasificaciones globales
+
+---
+
+## 🎨 Características de Diseño y UX
+***UI Uniforme (Glassmorphism):** Diseño moderno traslúcido con total soporte y contraste adaptativo para Modo Oscuro (base bordeaux/negro) y Modo Claro (base rosado/blanco).
+**Cero alerts nativos:** Toda la comunicación de victoria, derrota o alertas del sistema se realiza mediante modales estéticos de Bootstrap.
+**Favicon Propio:** Icono de la aplicación personalizado e implementado globalmente.
+**Animaciones:** Transiciones visuales suaves mediante CSS para mejorar el feedback del usuario.
+**Persistencia:** Integración con LocalStorage para almacenar la preferencia estética del usuario, manteniendo el tema elegido al recargar la página.
+
+---
+
+## 🗂️ Sprints Desarrollados (Contenido Acumulativo)
+
+### 🔹 Sprint #1 & #2 (Estructura Base y Autenticación)
+**Login y Registro de Usuarios:** Sistema de autenticación con Firebase Auth usando correo y contraseña. El registro captura y persiste en la base de datos el `Nombre`, `Apellido`, `Edad` y `Email`.
+**Botones de Acceso Rápido:** Tres botones de inicio de sesión rápido en la pantalla de Login para agilizar los testeos de la cátedra mediante perfiles precargados.
+**Control de Sesión Reactivo:** Uso de *Angular Signals* para ocultar dinámicamente los botones de Login/Registro según el estado de autenticación, mostrando el nombre del jugador y el botón de cierre de sesión.
+**Componente Quién Soy:** Integración con la **API de GitHub** (`https://api.github.com/users/Demiauu`) para renderizar dinámicamente la foto de perfil, nombre del desarrollador y la fecha de creación de la cuenta.
+
+### 🔹 Sprint #3 (Juegos Base y Chat)
+**Juego — Ahorcado:** Lógica interactiva con un teclado virtualizado en pantalla mediante botones (bloqueando por completo el teclado físico) Al finalizar, guarda en Firestore el usuario, tiempo, puntaje y letras seleccionadas.
+**Juego — Mayor o Menor:** Dinámica con una simulación de baraja de naipes, donde el usuario debe arriesgar si la tendencia de la siguiente carta es mayor o menor Al terminar, guarda las estadísticas en la base de datos.
+**Sala de Chat Global:** Canal de comunicación único en vivo para usuarios logueados. Funciona en tiempo real mediante suscripción a Firebase (realtime sin recargar la página), diferenciando estéticamente los mensajes propios de los enviados por terceros.
+
+### 🔹 Sprint #4 (Juegos Avanzados y Clasificaciones)
+**Juego — Preguntados:** Consumo dinámico de preguntas y opciones desde una API externa mediante `HttpClient`. Interacción controlada por botones en pantalla y guardado de aciertos en la base de datos.
+**Juego Propio — Click Extremo (Speed Clicker):** Desarrollo original orientado a medir la capacidad motriz y los reflejos del jugador mediante un objetivo aleatorio en un lapso de 15 segundos. Evita las opciones penalizadas por la cátedra (Tatetí, Memotest, Piedra/Papel/Tijera) y cuenta con su descripción técnica en la sección "Quién Soy"
+**Listados de Resultados Globales:** Vista centralizada (`Resultados`) con 4 tablas correspondientes a cada juego. Los datos se muestran ordenados jerárquicamente de mejor a peor desempeño consumidos directamente desde Firestore.
+
+---
+
+## 🛠️ Tecnologías Utilizadas
+**Frontend:** Angular (Componentes Standalone, Signals, Control Flow nativo `@for`/`@if`) 
+**Estilos y Animaciones:** Bootstrap 5, Animaciones CSS nativas, Google Fonts (Outfit) 
+**Backend & Base de Datos:** Firebase Auth, Firebase Cloud Firestore (Suscripciones en tiempo real) 
+**Hosting / Deploy:** Vercel
+**Control de Versiones:** Git & GitHub (Estructura de ramas independientes y Pull Requests por sprint)
