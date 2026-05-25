@@ -1,0 +1,124 @@
+<div class="container py-5">
+  <h2 class="text-white text-center fw-bold mb-5">🎮 Sala de Juegos</h2>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+
+    <div class="col">
+      <div class="card glass-card text-white border-0 shadow-lg h-100 text-center p-3">
+        <div class="fs-1 my-3">🃏</div>
+        <h4 class="card-title fw-bold text-primary">Mayor o Menor</h4>
+        <p class="text-muted small my-3">¿Podrás adivinar si la siguiente carta es más alta, baja o igual?</p>
+        
+        @if (auth.usuarioLogueado()) {
+          <button (click)="entrarAJuego('mayor-menor')" class="btn btn-primary w-100 fw-bold mt-auto py-2 d-inline-flex align-items-center justify-content-center gap-2">
+            <img src="favicon.ico" alt="Favicon" style="width: 18px; height: 18px; object-fit: contain;">
+            JUGAR
+          </button>
+        } @else {
+          <div class="w-100 mt-auto">
+            <button disabled class="btn btn-secondary w-100 opacity-50">🔒 BLOQUEADO</button>
+            <p class="text-warning small mt-2 mb-0">Inicia sesión para jugar</p>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card glass-card text-white border-0 shadow-lg h-100 text-center p-3">
+        <div class="fs-1 my-3">🧠</div>
+        <h4 class="card-title fw-bold text-warning">Preguntados</h4>
+        <p class="text-muted small my-3">Demostrá tus conocimientos respondiendo la trivia sin fallar.</p>
+        
+        @if (auth.usuarioLogueado()) {
+          <button (click)="entrarAJuego('preguntados')" class="btn btn-warning text-dark w-100 fw-bold mt-auto py-2 d-inline-flex align-items-center justify-content-center gap-2">
+            <img src="favicon.ico" alt="Favicon" style="width: 18px; height: 18px; object-fit: contain;">
+            JUGAR
+          </button>
+        } @else {
+          <div class="w-100 mt-auto">
+            <button disabled class="btn btn-secondary w-100 opacity-50">🔒 BLOQUEADO</button>
+            <p class="text-warning small mt-2 mb-0">Inicia sesión para jugar</p>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card glass-card text-white border-0 shadow-lg h-100 text-center p-3">
+        <div class="fs-1 my-3">🪓</div>
+        <h4 class="card-title fw-bold text-success">Ahorcado</h4>
+        <p class="text-muted small my-3">Adiviná la palabra oculta letra por letra antes de que sea tarde.</p>
+        
+        @if (auth.usuarioLogueado()) {
+          <button (click)="entrarAJuego('ahorcado')" class="btn btn-success w-100 fw-bold mt-auto py-2 d-inline-flex align-items-center justify-content-center gap-2">
+            <img src="favicon.ico" alt="Favicon" style="width: 18px; height: 18px; object-fit: contain;">
+            JUGAR
+          </button>
+        } @else {
+          <div class="w-100 mt-auto">
+            <button disabled class="btn btn-secondary w-100 opacity-50">🔒 BLOQUEADO</button>
+            <p class="text-warning small mt-2 mb-0">Inicia sesión para jugar</p>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card glass-card text-white border-0 shadow-lg h-100 text-center p-3">
+        <div class="fs-1 my-3 text-info animate__animated animate__pulse animate__infinite">🎯</div>
+        <h4 class="card-title fw-bold text-info">Click Extremo</h4>
+        <p class="text-muted small my-3">¡Poné a prueba tu velocidad clickeando el objetivo antes de que salte!</p>
+        
+        @if (auth.usuarioLogueado()) {
+          <button (click)="entrarAJuego('click-juego')" class="btn btn-info w-100 fw-bold mt-auto py-2 text-dark d-inline-flex align-items-center justify-content-center gap-2">
+            <img src="favicon.ico" alt="Favicon" style="width: 18px; height: 18px; object-fit: contain;">
+            JUGAR
+          </button>
+        } @else {
+          <div class="w-100 mt-auto">
+            <button disabled class="btn btn-secondary w-100 opacity-50">🔒 BLOQUEADO</button>
+            <p class="text-warning small mt-2 mb-0">Inicia sesión para jugar</p>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card glass-card text-white border-0 shadow-lg h-100 text-center p-3">
+        <div class="fs-1 my-3 text-secondary">📊</div>
+        <h4 class="card-title fw-bold text-secondary">Resultados</h4>
+        <p class="text-muted small my-3">Mirá el historial de puntuaciones y quiénes lideran el podio.</p>
+        
+        @if (auth.usuarioLogueado()) {
+          <button (click)="entrarAJuego('resultados')" class="btn btn-secondary w-100 fw-bold mt-auto py-2 d-inline-flex align-items-center justify-content-center gap-2">
+            <img src="favicon.ico" alt="Favicon" style="width: 18px; height: 18px; object-fit: contain;">
+            VER PODIO
+          </button>
+        } @else {
+          <div class="w-100 mt-auto">
+            <button disabled class="btn btn-secondary w-100 opacity-50">🔒 BLOQUEADO</button>
+            <p class="text-warning small mt-2 mb-0">Inicia sesión para ver</p>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card glass-card text-main border-0 shadow-lg h-100 text-center p-3">
+        <div class="fs-1 my-3">💬</div>
+        <h4 class="card-title fw-bold mb-3">Chat Global</h4>
+        <p class="text-muted small my-3">Conectate con la sala, charlá en vivo y compartí tus mejores récords.</p>
+        
+        @if (auth.usuarioLogueado()) {
+          <button (click)="entrarAJuego('chat')" class="btn btn-chat w-100 fw-bold mt-auto py-2 d-inline-flex align-items-center justify-content-center gap-2">
+            <img src="favicon.ico" alt="Favicon" style="width: 18px; height: 18px; object-fit: contain;">
+            ENTRAR
+          </button>
+        } @else {
+          <div class="w-100 mt-auto">
+            <button disabled class="btn btn-secondary w-100 opacity-50">🔒 BLOQUEADO</button>
+            <p class="text-warning small mt-2 mb-0">Inicia sesión para chatear</p>
+          </div>
+        }
+      </div>
+    </div>

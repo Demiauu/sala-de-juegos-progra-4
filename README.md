@@ -1,59 +1,51 @@
-# SalaDeJuegos
+# 🎮 Sala de Juegos — Trabajo Práctico #1
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.11.
+**Materia:** Programación IV 
+**Institución:** Universidad Tecnológica Nacional (UTN) — Facultad Regional Avellaneda (FRA)
+**Carrera:** Tecnicatura Universitaria en Programación (TUP)
+**Alumno:** Demian Agustin Paz Gamboa  
 
-## Development server
+🚀 **Link del Deploy Activo (Vercel):** sala-de-juegos-progra-4.vercel.app
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## 📋 Descripción General
+Aplicación frontend interactiva desarrollada en **Angular** y conectada a **Firebase** como servidor backendEl objetivo de la plataforma es permitir a los usuarios (jugadores) medir sus capacidades cognitivas y motrices a través de una sala integrada con juegos, chat en tiempo real y clasificaciones globales
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🎨 Características de Diseño y UX
+***UI Uniforme (Glassmorphism):** Diseño moderno traslúcido con total soporte y contraste adaptativo para Modo Oscuro (base bordeaux/negro) y Modo Claro (base rosado/blanco).
+**Cero alerts nativos:** Toda la comunicación de victoria, derrota o alertas del sistema se realiza mediante modales estéticos de Bootstrap.
+**Favicon Propio:** Icono de la aplicación personalizado e implementado globalmente.
+**Animaciones:** Transiciones visuales suaves mediante CSS para mejorar el feedback del usuario.
+**Persistencia:** Integración con LocalStorage para almacenar la preferencia estética del usuario, manteniendo el tema elegido al recargar la página.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## 🗂️ Sprints Desarrollados (Contenido Acumulativo)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 🔹 Sprint #1 & #2 (Estructura Base y Autenticación)
+**Login y Registro de Usuarios:** Sistema de autenticación con Firebase Auth usando correo y contraseña. El registro captura y persiste en la base de datos el `Nombre`, `Apellido`, `Edad` y `Email`.
+**Botones de Acceso Rápido:** Tres botones de inicio de sesión rápido en la pantalla de Login para agilizar los testeos de la cátedra mediante perfiles precargados.
+**Control de Sesión Reactivo:** Uso de *Angular Signals* para ocultar dinámicamente los botones de Login/Registro según el estado de autenticación, mostrando el nombre del jugador y el botón de cierre de sesión.
+**Componente Quién Soy:** Integración con la **API de GitHub** (`https://api.github.com/users/Demiauu`) para renderizar dinámicamente la foto de perfil, nombre del desarrollador y la fecha de creación de la cuenta.
 
-```bash
-ng generate --help
-```
+### 🔹 Sprint #3 (Juegos Base y Chat)
+**Juego — Ahorcado:** Lógica interactiva con un teclado virtualizado en pantalla mediante botones (bloqueando por completo el teclado físico) Al finalizar, guarda en Firestore el usuario, tiempo, puntaje y letras seleccionadas.
+**Juego — Mayor o Menor:** Dinámica con una simulación de baraja de naipes, donde el usuario debe arriesgar si la tendencia de la siguiente carta es mayor o menor Al terminar, guarda las estadísticas en la base de datos.
+**Sala de Chat Global:** Canal de comunicación único en vivo para usuarios logueados. Funciona en tiempo real mediante suscripción a Firebase (realtime sin recargar la página), diferenciando estéticamente los mensajes propios de los enviados por terceros.
 
-## Building
+### 🔹 Sprint #4 (Juegos Avanzados y Clasificaciones)
+**Juego — Preguntados:** Consumo dinámico de preguntas y opciones desde una API externa mediante `HttpClient`. Interacción controlada por botones en pantalla y guardado de aciertos en la base de datos.
+**Juego Propio — Click Extremo (Speed Clicker):** Desarrollo original orientado a medir la capacidad motriz y los reflejos del jugador mediante un objetivo aleatorio en un lapso de 15 segundos. Evita las opciones penalizadas por la cátedra (Tatetí, Memotest, Piedra/Papel/Tijera) y cuenta con su descripción técnica en la sección "Quién Soy"
+**Listados de Resultados Globales:** Vista centralizada (`Resultados`) con 4 tablas correspondientes a cada juego. Los datos se muestran ordenados jerárquicamente de mejor a peor desempeño consumidos directamente desde Firestore.
 
-To build the project run:
+---
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🛠️ Tecnologías Utilizadas
+**Frontend:** Angular (Componentes Standalone, Signals, Control Flow nativo `@for`/`@if`) 
+**Estilos y Animaciones:** Bootstrap 5, Animaciones CSS nativas, Google Fonts (Outfit) 
+**Backend & Base de Datos:** Firebase Auth, Firebase Cloud Firestore (Suscripciones en tiempo real) 
+**Hosting / Deploy:** Vercel
+**Control de Versiones:** Git & GitHub (Estructura de ramas independientes y Pull Requests por sprint)

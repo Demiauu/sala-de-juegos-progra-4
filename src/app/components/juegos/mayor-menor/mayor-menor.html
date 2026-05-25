@@ -1,0 +1,39 @@
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+  <div class="glass-card p-5 text-center shadow-lg w-100" style="max-width: 500px;">
+    <h2 class="text-white fw-bold mb-4">🃏 Mayor o Menor</h2>
+
+    <div class="d-flex justify-content-around mb-4">
+      <span class="text-muted">Aciertos: <strong class="text-success fs-5">{{ aciertos() }}</strong></span>
+      <span class="text-muted">Ronda: <strong class="text-info fs-5">{{ intentos() }}/10</strong></span>
+    </div>
+
+    @if (cartaActual()) {
+      <div class="mx-auto my-4 d-flex flex-column justify-content-center align-items-center shadow animate__animated animate__flipInY" 
+           style="width: 160px; height: 240px; background: white; border-radius: 15px; border: 2px solid rgba(255,255,255,0.2);">
+        <span class="fs-1 fw-bold" 
+              [class.text-danger]="cartaActual()!.palo.includes('Corazones') || cartaActual()!.palo.includes('Diamantes') || cartaActual()!.palo.includes('♥️') || cartaActual()!.palo.includes('♦️')" 
+              style="color: #0f172a;">
+          {{ cartaActual()!.numero }}
+        </span>
+        <span class="small text-secondary mt-2 fw-bold">
+          @if (cartaActual()!.palo === 'Corazones') { ♥️ Corazones }
+          @else if (cartaActual()!.palo === 'Diamantes') { ♦️ Diamantes }
+          @else if (cartaActual()!.palo === 'Tréboles') { ♣️ Tréboles }
+          @else if (cartaActual()!.palo === 'Picas') { ♠️ Picas }
+          @else { {{ cartaActual()!.palo }} }
+        </span>
+      </div>
+    }
+
+    <p class="text-white small fw-medium my-3" style="min-height: 24px;">{{ mensajeFeedback() }}</p>
+
+    @if (!partidaTerminada()) {
+      <div class="d-flex justify-content-center gap-3 mt-4">
+        <button (click)="jugar('mayor')" class="btn btn-primary px-4 py-2 w-50 fw-bold">⬆️ Mayor o Igual</button>
+        <button (click)="jugar('menor')" class="btn btn-outline-light px-4 py-2 w-50 fw-bold">⬇️ Menor o Igual</button>
+      </div>
+    } @else {
+      <button (click)="reiniciarJuego()" class="btn btn-success px-5 py-2 mt-3 w-100 fw-bold animate__animated animate__bounceIn">Jugar otra vez</button>
+    }
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 75vh;">
+  <div class="glass-card p-5" style="max-width: 450px; width: 100%;">
+    
+    <div class="text-center mb-4">
+      <h2 class="fw-bold text-white"> Ingresar</h2>
+      <p class="text-muted small">Bienvenido otra vez, jugador</p>
+    </div>
+
+    @if (mensajeError()) {
+      <div class="alert alert-danger text-center p-2 mb-3 border-0" style="font-size: 14px; background-color: rgba(220, 53, 69, 0.2); color: #f87171;">
+        {{ mensajeError() }}
+      </div>
+    }
+
+    <form (ngSubmit)="login()">
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="email" name="email">
+        <label for="floatingInput">Correo electrónico</label>
+      </div>
+      
+      <div class="form-floating mb-4">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="password" name="password">
+        <label for="floatingPassword">Contraseña</label>
+      </div>
+
+      <button class="btn btn-primary w-100 py-2.5 fw-semibold mb-4 shadow" type="submit">
+        Ingresar a la Sala
+      </button>
+
+      <p class="text-center text-muted small mb-2">Accesos rápidos de prueba:</p>
+      <div class="d-flex flex-column gap-2 mb-3">
+        <button type="button" (click)="completarCamposPrueba('admin')" class="btn btn-outline-secondary btn-sm text-start text-white border-0" style="background: rgba(255,255,255,0.05);">🧙‍♂️ Entrar como Admin</button>
+        <button type="button" (click)="completarCamposPrueba('jugador')" class="btn btn-outline-secondary btn-sm text-start text-white border-0" style="background: rgba(255,255,255,0.05);">🧝‍♂️ Entrar como Jugador</button>
+        <button type="button" (click)="completarCamposPrueba('invitado')" class="btn btn-outline-secondary btn-sm text-start text-white border-0" style="background: rgba(255,255,255,0.05);">👤 Entrar como Invitado</button>
+      </div>
+    </form>
+
+    <hr class="border-secondary opacity-20 my-4">
+
+    <div class="text-center">
+      <p class="small mb-0 text-muted">
+        ¿No tienes cuenta? 
+        <a [routerLink]="['/registro']" class="text-info fw-bold text-decoration-none ms-1">Regístrate acá</a>
+      </p>
+    </div>
+
+  </div>
+</div>

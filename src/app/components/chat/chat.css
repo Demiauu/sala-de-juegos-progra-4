@@ -1,0 +1,87 @@
+/* Contenedor de la pantalla */
+.chat-wrapper {
+    min-height: 75vh;
+}
+
+/* Caja principal del Chat (Glassmorphism adaptativo) */
+.main-chat-box {
+    max-width: 700px;
+    height: 65vh;
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--glass-border) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+/* Título dinámico que cambia de color según el modo claro/oscuro */
+.chat-title {
+    color: var(--text-main) !important;
+    border-bottom: 1px solid var(--glass-border) !important;
+}
+
+/* Contenedor de los mensajes */
+#chat-contenedor {
+    max-height: 45vh;
+}
+
+/* Estructura base de las burbujas */
+.chat-bubble {
+    max-width: 75%;
+    word-break: break-word;
+}
+
+/* 🔵 TUS MENSAJES (Mantenemos tu violeta identitario) */
+.my-message {
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%) !important;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+}
+.my-message .user-name {
+    color: #e0e7ff !important; /* Texto claro para legibilidad */
+}
+.my-message .message-text {
+    color: #ffffff !important;
+}
+.my-message .message-time {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 10px;
+}
+
+/* ⚪ MENSAJES DE OTROS USUARIOS (Adaptativos) */
+.other-message {
+    background: var(--glass-border) !important; /* Se genera con el color del borde para contrastar sutilmente */
+    border: 1px solid var(--glass-border) !important;
+}
+/* En modo claro se usa el color del body, en modo oscuro un cian brillante */
+.other-message .user-name {
+    color: #0d6efd !important; 
+}
+body:not(.light-theme) .other-message .user-name {
+    color: #22d3ee !important; /* Tu cian original en modo oscuro */
+}
+.other-message .message-text {
+    color: var(--text-main) !important;
+}
+.other-message .message-time {
+    color: var(--text-muted) !important;
+    font-size: 10px;
+}
+
+/* ⌨️ INPUT DE TEXTO ADAPTATIVO */
+.chat-input {
+    background-color: var(--input-bg) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: var(--text-main) !important;
+    border-radius: 12px;
+    padding: 10px 15px;
+}
+
+.chat-input::placeholder {
+    color: var(--text-muted) !important;
+    opacity: 0.6;
+}
+
+/* 🚀 BOTÓN ENVIAR */
+.btn-enviar {
+    border-radius: 12px;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
