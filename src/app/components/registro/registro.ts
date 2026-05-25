@@ -29,7 +29,9 @@ export class Registro {
     this.mensajeError.set(null);
     this.mensajeExito.set(null);
 
-    if (!this.email.trim() || !this.clave.trim() || !this.nombre.trim() || !this.apellido.trim() || !this.edad.trim()) {
+    const edadString = this.edad ? this.edad.toString().trim() : '';
+
+    if (!this.email.trim() || !this.clave.trim() || !this.nombre.trim() || !this.apellido.trim() || !edadString) {
       this.mensajeError.set('Por favor, completa todos los campos.');
       return;
     }
