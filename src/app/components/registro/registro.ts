@@ -1,7 +1,7 @@
 import { Component, signal, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../services/auth';
+import { AuthService } from '../../services/auth.service';
 import { updateProfile } from '@angular/fire/auth';
 
 @Component({

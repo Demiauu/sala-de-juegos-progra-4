@@ -4,8 +4,7 @@ import { authGuard } from './guards/auth-guard';
 export const routes: Routes = [
   { 
     path: '', 
-    loadComponent: () => import('./components/home/home').then(m => m.Home), 
-    canActivate: [authGuard] 
+    loadComponent: () => import('./components/home/home').then(m => m.Home)
   },
   { 
     path: 'login', 
@@ -15,6 +14,36 @@ export const routes: Routes = [
   { 
     path: 'registro', 
     loadComponent: () => import('./components/registro/registro').then(m => m.Registro),
+    canActivate: [authGuard]
+  },
+  { 
+    path: 'ahorcado', 
+    loadComponent: () => import('./components/juegos/ahorcado/ahorcado').then(m => m.AhorcadoComponent),
+    canActivate: [authGuard]
+  },
+  { 
+    path: 'mayor-menor', 
+    loadComponent: () => import('./components/juegos/mayor-menor/mayor-menor').then(m => m.MayorMenorComponent),
+    canActivate: [authGuard]
+  },
+  { 
+    path: 'preguntados', 
+    loadComponent: () => import('./components/juegos/preguntados/preguntados').then(m => m.PreguntadosComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'chat',
+    loadComponent: () => import('./components/chat/chat').then(m => m.ChatComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'resultados',
+    loadComponent: () => import('./components/resultados/resultados').then(m => m.ResultadosComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'click-juego',
+    loadComponent: () => import('./components/juegos/click-juego/click-juego').then(m => m.ClickJuegoComponent),
     canActivate: [authGuard]
   },
   { 

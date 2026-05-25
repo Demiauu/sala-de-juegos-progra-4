@@ -1,0 +1,29 @@
+/* Zona donde se confina el juego */
+.zona-clickeo {
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.6);
+    background-image: radial-gradient(circle, rgba(30,41,59,0.5) 10%, transparent 11%);
+    background-size: 15px 15px;
+}
+
+/* Estilo del botón loco que hay que clickear */
+.btn-objetivo {
+    width: 55px;
+    height: 55px;
+    font-size: 26px;
+    background: radial-gradient(circle, #ff4e50, #f9d423);
+    cursor: crosshair;
+    outline: none;
+    z-index: 1;
+    transform: translate(-50%, -50%); /* Centra el elemento exactamente en el punto coordenado */
+    transition: top 0.1s ease-out, left 0.1s ease-out; /* Hace que el salto de posición sea levemente fluido visualmente */
+}
+
+.btn-objetivo:active {
+    transform: translate(-50%, -50%) scale(0.85);
+    background: #22c55e;
+}
+
+/* Efectos hover para botones clásicos */
+.transition-all {
+    transition: all 0.2s ease-in-out;
+}

@@ -1,0 +1,55 @@
+/* Heredamos la tipografía y los colores de tu root sin sobreescribir fondos */
+.card-title {
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+/* Efecto de elevación suave integrado a tus glass-cards del Home */
+.glass-card {
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: var(--text-main) !important;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease !important;
+}
+
+.glass-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Ajustes finos de los textos muted del tema */
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Botón de Click Extremo adaptado para que no rompa el contraste */
+.btn-info {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+    border: none;
+    color: #ffffff !important;
+}
+.btn-info:hover {
+    box-shadow: 0 8px 20px rgba(6, 182, 212, 0.4);
+}
+
+/* Forzar que las imágenes internas de los botones no rompan el padding */
+.btn img {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+/* Botón de Chat Personalizado para Alto Contraste */
+.btn-chat {
+    background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
+    border: none;
+    color: #ffffff !important; /* Forzamos texto blanco siempre para que resalte */
+}
+
+.btn-chat:hover {
+    background: linear-gradient(135deg, #64748b 0%, #334155 100%);
+    box-shadow: 0 8px 20px rgba(30, 41, 59, 0.4);
+}
+
+/* Forzamos a las glass-cards del home a usar el texto dinámico de tu root */
+.glass-card .card-title {
+    color: var(--text-main) !important;
+}

@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
-import { AuthService } from './services/auth';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ import { AuthService } from './services/auth';
 export class App {
   title = 'sala-de-juegos';
 
-  public authService = inject(AuthService);
+  public AuthService = inject(AuthService);
 
   public temaActual = signal<'dark' | 'light'>('dark');
 

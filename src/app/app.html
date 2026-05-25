@@ -20,14 +20,14 @@
 
       <button routerLink="/quien-soy" class="btn btn-outline-light btn-sm px-3" style="color: var(--text-main); border-color: var(--glass-border);">Quién Soy</button>
 
-      @if (!authService.usuarioLogueado()) {
+      @if (!AuthService.usuarioLogueado()) {
         <button routerLink="/login" class="btn btn-outline-primary btn-sm px-3 style-login-btn" style="color: var(--text-main);">Iniciar Sesión</button>
         <button routerLink="/registro" class="btn btn-primary btn-sm px-3">Registrarse</button>
       } @else {
         <span class="small me-2" style="color: var(--text-muted);">
-          Jugador: <strong class="text-info fw-semibold">{{ (authService.usuarioLogueado())?.displayName || authService.usuarioLogueado()?.email }}</strong>
+          Jugador: <strong class="text-info fw-semibold">{{ (AuthService.usuarioLogueado())?.displayName || AuthService.usuarioLogueado()?.email }}</strong>
         </span>
-        <button (click)="authService.logout()" class="btn btn-danger btn-sm px-3">
+        <button (click)="AuthService.logout()" class="btn btn-danger btn-sm px-3">
           Salir
         </button>
       }

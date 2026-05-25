@@ -1,0 +1,41 @@
+<div class="container d-flex flex-column align-items-center justify-content-center py-4" style="min-height: 80vh;">
+  <div class="card bg-dark text-white p-4 shadow-lg text-center border-0 w-100" style="max-width: 650px;">
+    
+    <h2 class="fw-bold mb-2 text-info">🎯 Click Extremo</h2>
+    <p class="text-white-50 small mb-3">Hacé click en el objetivo antes de que se mueva. ¡Cada acierto lo acelera!</p>
+
+    <div class="d-flex justify-content-around bg-black bg-opacity-25 py-2 rounded-3 mb-3 small fw-bold">
+      <span>Tiempo: <strong [class.text-danger]="tiempoRestante() <= 5" [class.text-warning]="tiempoRestante() > 5">{{ tiempoRestante() }}s</strong></span>
+      <span>Puntuación: <strong class="text-success">{{ puntos() }} pts</strong></span>
+    </div>
+
+    <div class="zona-clickeo position-relative overflow-hidden bg-black bg-opacity-50 border border-secondary rounded-3 mb-3 w-100" style="height: 380px;">
+      
+      @if (!jugando() && !partidaTerminada()) {
+        <div class="d-flex flex-column align-items-center justify-content-center h-100 w-100 position-absolute bg-dark bg-opacity-75 z-2 animate__animated animate__fadeIn">
+          <p class="fs-5 text-warning mb-4 px-3">¿Están listos tus reflejos?</p>
+          <button (click)="iniciarJuego()" class="btn btn-info btn-lg px-5 fw-bold shadow">¡EMPEZAR!</button>
+        </div>
+      }
+
+      @if (partidaTerminada()) {
+        <div class="d-flex flex-column align-items-center justify-content-center h-100 w-100 position-absolute bg-dark bg-opacity-90 z-2 animate__animated animate__fadeIn">
+          <h3 class="text-danger fw-bold mb-2">¡Tiempo Agotado!</h3>
+          <p class="fs-4 text-light mb-4">Conseguiste <strong class="text-success">{{ puntos() }}</strong> puntos</p>
+          <button (click)="resetearJuego()" class="btn btn-warning px-5 fw-bold text-dark shadow">Jugar otra vez</button>
+        </div>
+      }
+
+      @if (jugando()) {
+        <button (click)="clickObjetivo()" 
+                class="btn-objetivo position-absolute border-0 rounded-circle shadow d-flex align-items-center justify-content-center animate__animated animate__pulse animate__infinite"
+                [style.top]="botonTop()" 
+                [style.left]="botonLeft()">
+          🎯
+        </button>
+      }
+
+    </div>
+
+  </div>
+</div>

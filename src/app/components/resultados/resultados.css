@@ -1,0 +1,45 @@
+/* Aseguramos que la tipografía combine con tu root global */
+h2, h5, th, td {
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Color personalizado cian para tu juego propio */
+.text-cyan {
+    color: #06b6d4 !important;
+}
+
+/* 🚨 REPARACIÓN DE TRANSPARENCIA: Forzamos a Bootstrap a no pisar el Glassmorphism */
+.glass-card {
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--glass-border) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Evitamos que la tarjeta se levante tanto como en el Home, pero que mantenga coherencia */
+.glass-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 🧼 LIMPIEZA DE TABLAS: Sacamos el fondo negro sólido de la clase .table-dark */
+.glass-card .table {
+    background-color: transparent !important;
+    color: var(--text-main) !important;
+    --bs-table-bg: transparent !important; /* El secreto para desactivar el fondo de Bootstrap 5 */
+    --bs-table-hover-bg: rgba(255, 255, 255, 0.05) !important; /* Efecto hover sutil en las filas */
+}
+
+.glass-card table tr, 
+.glass-card table td, 
+.glass-card table th {
+    background-color: transparent !important;
+    color: var(--text-main) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Estilo para los textos secundarios dentro de las tablas */
+.text-white-50 {
+    color: var(--text-muted) !important;
+}

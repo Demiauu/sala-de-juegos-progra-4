@@ -1,0 +1,38 @@
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+  <div class="glass-card p-5 text-center shadow-lg w-100" style="max-width: 650px;">
+    <h2 class="text-white fw-bold mb-4">🪓 Ahorcado</h2>
+
+    <div class="mb-4">
+      <p class="text-muted mb-1">Intentos restantes:</p>
+      <span class="badge bg-danger fs-5 px-3 py-1">{{ intentosRestantes() }}</span>
+    </div>
+
+    <div class="d-flex justify-content-center gap-3 my-4">
+      @for (letra of PalabraSecreta(); track $index) {
+        <span class="fs-1 fw-bold text-info border-bottom border-3 px-2" style="min-width: 40px;">{{ letra }}</span>
+      }
+    </div>
+
+    @if (partidaTerminada()) {
+      <div class="alert alert-info border-0 my-3 fw-bold bg-opacity-20 text-white" style="background-color: rgba(99, 102, 241, 0.2);">
+        {{ resultado() }}
+      </div>
+      <button (click)="reiniciarjuego()" class="btn btn-success px-4 py-2 mt-2">Jugar de nuevo</button>
+    }
+
+    <div class="row row-cols-7 g-2 justify-content-center mt-4">
+      @for (letra of abecedario; track letra) {
+        <div class="col-auto">
+          <button (click)="seleccionarletra(letra)" 
+                  [disabled]="letrasUsadas().includes(letra) || partidaTerminada()" 
+                  class="btn btn-sm px-3 py-2 fw-bold"
+                  [class.btn-outline-light]="!letrasUsadas().includes(letra)"
+                  [class.btn-secondary]="letrasUsadas().includes(letra)"
+                  style="min-width: 45px;">
+            {{ letra }}
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</div>

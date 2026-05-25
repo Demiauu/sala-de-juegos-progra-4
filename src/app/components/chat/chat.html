@@ -1,0 +1,37 @@
+<div class="container d-flex justify-content-center py-4 chat-wrapper">
+  <div class="card glass-card d-flex flex-column p-4 w-100 shadow-lg border-0 main-chat-box">
+    
+    <h3 class="chat-title fw-bold mb-3 pb-2">💬 Sala de Chat Global</h3>
+    
+    <div id="chat-contenedor" class="flex-grow-1 overflow-auto pe-2 mb-3">
+      @for (msg of mensaje(); track msg.fecha) {
+        <div class="d-flex mb-3" [class.justify-content-end]="msg.email === auth.usuarioLogueado()?.email">
+          
+          <div class="p-3 rounded-3 shadow-sm chat-bubble" 
+               [class.my-message]="msg.email === auth.usuarioLogueado()?.email"
+               [class.other-message]="msg.email !== auth.usuarioLogueado()?.email">
+            
+            <div class="d-flex justify-content-between align-items-center gap-4 mb-1 bubble-header">
+              <span class="fw-bold small user-name">
+                {{ msg.usuario }}
+              </span>
+              <span class="message-time">
+                {{ msg.fecha | date:'HH:mm' }}
+              </span>
+            </div>
+            
+            <p class="mb-0 message-text small">{{ msg.mensaje }}</p>
+          </div>
+
+        </div>
+      }
+    </div>
+
+    <form (ngSubmit)="enviarMensaje()" class="d-flex gap-2 chat-form">
+      <input type="text" [(ngModel)]="nuevoMensaje" name="msgText" autocomplete="off"
+             class="form-control chat-input" placeholder="Escribí un mensaje...">
+      <button type="submit" class="btn btn-success px-4 fw-bold btn-enviar">Enviar</button>
+    </form>
+
+  </div>
+</div>
