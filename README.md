@@ -5,7 +5,7 @@
 **Carrera:** Tecnicatura Universitaria en Programación (TUP)
 **Alumno:** Demian Agustin Paz Gamboa  
 
-🚀 **Link del Deploy Activo (Vercel):** https://sala-de-juegos-progra-4-git-rama-sprint-4-demiauus-projects.vercel.app
+🚀 **Link del Deploy Activo (Vercel):** https://sala-de-juegos-progra-4.vercel.app/
 
 ---
 
