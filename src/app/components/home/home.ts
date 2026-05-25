@@ -13,16 +13,17 @@ import { CommonModule } from '@angular/common';
 export class Home {
   public auth = inject(AuthService);
   private router = inject(Router);
-
   public estaLogueado = signal<boolean>(false);
 
   ngOnInit(): void {
+    // Verificamos el estado de autenticación del usuario al cargar el componente, y actualizamos la señal "estaLogueado" para mostrar u ocultar los botones de acceso a los juegos.
     const user = typeof this.auth.usuarioLogueado() === 'function'
       ? this.auth.usuarioLogueado()
       : this.auth.usuarioLogueado;
 
       this.estaLogueado.set(!!user);
   }
+  // Función para navegar a la ruta del juego seleccionado, solo si el usuario está logueado. Si no está logueado, no hace nada.
   public entrarAJuego(rutaJuego: string) {
     if (this.auth.usuarioLogueado()) {
       this.router.navigate([`/${rutaJuego}`]);

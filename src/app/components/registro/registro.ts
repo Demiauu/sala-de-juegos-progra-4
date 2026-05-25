@@ -29,7 +29,7 @@ export class Registro {
     this.mensajeError.set(null);
     this.mensajeExito.set(null);
 
-    if (!this.email || !this.clave) {
+    if (!this.email.trim() || !this.clave.trim() || !this.nombre.trim() || !this.apellido.trim() || !this.edad.trim()) {
       this.mensajeError.set('Por favor, completa todos los campos.');
       return;
     }

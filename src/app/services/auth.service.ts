@@ -16,7 +16,7 @@ export class AuthService {
     public usuarioLogueado = this.usuarioLogueadoSignal.asReadonly();
 
     constructor() {
-
+        // El constructor se suscribe a los cambios en el estado de autenticacion de firebase. Cada vez que el usuario inicia o cierra sesión, se actualiza la señal "usuarioLogueadoSignal" con la información del usuario o con null si no hay usuario logueado.
         authState(this.auth).subscribe((user) => {
             if (user && user.email) {
                 this.usuarioLogueadoSignal.set({
@@ -29,7 +29,6 @@ export class AuthService {
             }
         });
     }
-
 
     async registrar (email: string, password: string) {
         try {

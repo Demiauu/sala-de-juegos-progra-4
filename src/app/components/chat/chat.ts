@@ -21,7 +21,7 @@ export class ChatComponent implements OnInit {
     ngOnInit(): void {
         this.cargarMensajes();
     }
-
+    // Función para cargar los mensajes desde Firestore usando el servicio, y luego asignarlos a la señal "mensaje" para que se muestren en el HTML.
     public cargarMensajes() {
         this.firestore.obtenerMensajes().subscribe({
             next: (datos: any[]) => {
@@ -32,6 +32,7 @@ export class ChatComponent implements OnInit {
         });
     }
 
+    // Envía el mensaje al hacer click en el botón o presionando Enter, y luego recarga la lista de mensajes para mostrar el nuevo mensaje enviado.
     public enviarMensaje() {
         if (!this.nuevoMensaje || !this.nuevoMensaje.trim()) return;
 
@@ -45,7 +46,7 @@ export class ChatComponent implements OnInit {
             mensaje: this.nuevoMensaje.trim(),
             fecha: Date.now()
         };
-
+        // Enviamos el mensaje a Firestore usando el servicio, y luego recargamos la lista de mensajes para mostrar el nuevo mensaje enviado.
         this.firestore.enviarMensaje(payload)
             .then(() => {
                 this.nuevoMensaje = '';
@@ -55,7 +56,7 @@ export class ChatComponent implements OnInit {
                 console.error('Error al enviar mensaje:', error);
             });
     }
-
+    // Función para hacer scroll automático al final del contenedor de mensajes cada vez que se cargan nuevos mensajes.
     private scrollToBottom() {
         const contenedor = document.getElementById('chat-contenedor');
         if (contenedor) {

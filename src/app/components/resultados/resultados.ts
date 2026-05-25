@@ -16,7 +16,7 @@ export class ResultadosComponent implements OnInit {
     public resAhorcado = signal<any[]>([]);
     public resMayorMenor = signal<any[]>([]);
     public resPreguntados = signal<any[]>([]);
-
+    
     ngOnInit(): void {
         this.firestoreService.obtenerPuntajes('ahorcado').subscribe(d => {
             this.resAhorcado.set(d);
