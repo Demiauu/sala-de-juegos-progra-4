@@ -1,8 +1,9 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { FirestoreService } from '../../services/firestore.service';
 import { FormsModule } from '@angular/forms';
+import { interval, Subscription, switchMap, startWith } from 'rxjs';
 
 @Component({
     selector: 'app-chat',
@@ -11,25 +12,40 @@ import { FormsModule } from '@angular/forms';
     templateUrl: './chat.html',
     styleUrl: './chat.css'
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
     public auth = inject(AuthService);
     public firestore = inject(FirestoreService);
 
     public mensaje = signal<any[]>([]);
     public nuevoMensaje = '';
 
+    
+// Guardamos la suscripción para poder matarla al salir de la pantalla
+    private chatSub!: Subscription;
+
     ngOnInit(): void {
-        this.cargarMensajes();
+        this.chatSub = interval(2000)
+            .pipe(
+                startWith(0), // Ejecuta la primera carga al instante nada más entrar al chat
+                switchMap(() => this.firestore.obtenerMensajes()) // Cancela peticiones colgadas si internet va lento
+            )
+            .subscribe({
+                next: (datos: any[]) => {
+                    // Solo actualizamos la señal y hacemos scroll si entraron mensajes nuevos
+                    if (datos.length !== this.mensaje().length) {
+                        this.mensaje.set(datos);
+                        setTimeout(() => this.scrollToBottom(), 100);
+                    }
+                },
+                error: (err: any) => console.error('Error en el stream del chat:', err)
+            });
     }
-    // Función para cargar los mensajes desde Firestore usando el servicio, y luego asignarlos a la señal "mensaje" para que se muestren en el HTML.
-    public cargarMensajes() {
-        this.firestore.obtenerMensajes().subscribe({
-            next: (datos: any[]) => {
-                this.mensaje.set(datos);
-                setTimeout(() => this.scrollToBottom(), 100);
-            },
-            error: (err: any) => console.error('Error al traer mensajes:', err)
-        });
+
+    // 🛡️ LIBERACIÓN DE MEMORIA: Al salir de la pestaña a cualquier juego, frena el bucle de red
+    ngOnDestroy(): void {
+        if (this.chatSub) {
+            this.chatSub.unsubscribe();
+        }
     }
 
     // Envía el mensaje al hacer click en el botón o presionando Enter, y luego recarga la lista de mensajes para mostrar el nuevo mensaje enviado.
@@ -50,7 +66,6 @@ export class ChatComponent implements OnInit {
         this.firestore.enviarMensaje(payload)
             .then(() => {
                 this.nuevoMensaje = '';
-                this.cargarMensajes(); // Recargamos la lista manualmente al enviar exitosamente
             })
             .catch((error: any) => {
                 console.error('Error al enviar mensaje:', error);

@@ -1,0 +1,49 @@
+<div class="container mt-4 contenedor-animado" style="min-height: 85vh; padding-bottom: 40px;">
+  
+  <div class="glass-card p-4 shadow">
+    <div class="mb-4">
+      <h2 class="fw-bold">📊 Panel de Administración: Encuestas</h2>
+      <p class="text-muted small">Listado exclusivo para administradores con el feedback de la Sala de Juegos</p>
+    </div>
+
+    @if (listaEncuestas().length > 0) {
+      <div class="table-responsive">
+        <table class="table table-dark table-hover align-middle m-0" style="font-size: 14px; background: transparent;">
+          <thead>
+            <tr class="text-info border-bottom border-secondary">
+              <th scope="col">Usuario Cuenta</th>
+              <th scope="col">Nombre Formulario</th>
+              <th scope="col">Edad</th>
+              <th scope="col">Teléfono</th>
+              <th scope="col">1. Opinión General</th>
+              <th scope="col">2. Juego Favorito</th>
+              <th scope="col">3. Recomienda</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (encuesta of listaEncuestas(); track $index) {
+              <tr class="border-bottom border-opacity-10 border-white">
+                <td class="fw-bold text-muted">{{ encuesta.usuario }}</td>
+                <td class="text-white">{{ encuesta.nombre }}</td>
+                <td><span class="badge bg-secondary">{{ encuesta.edad }} años</span></td>
+                <td class="text-nowrap">{{ encuesta.telefono }}</td>
+                <td style="max-width: 250px; white-space: normal;">"{{ encuesta.opinion }}"</td>
+                <td><span class="badge bg-info text-dark fw-bold">{{ encuesta.favorito }}</span></td>
+                <td>
+                  <span class="badge" [class.bg-success]="encuesta.recomienda === 'Sí'" [class.bg-danger]="encuesta.recomienda === 'No'">
+                    {{ encuesta.recomienda }}
+                  </span>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <div class="alert alert-warning text-center">
+        No se encontraron respuestas de encuestas registradas en la base de datos todavía.
+      </div>
+    }
+
+  </div>
+</div>

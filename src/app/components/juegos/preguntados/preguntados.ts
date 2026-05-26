@@ -68,7 +68,7 @@ export class PreguntadosComponent implements OnInit {
 
     private cargarPregunta() {
         this.mensajeResultado.set('');
-
+        // Intentamos obtener una pregunta de la API, pero si recibimos un error 429 (demasiadas solicitudes), usamos una pregunta de contingencia local.
         this.http.get('https://opentdb.com/api.php?amount=1&type=multiple').pipe(
             catchError((err: any) => {
                 console.warn('⚠️ API OpenTDB bloqueada (429). Usando pregunta de contingencia local.');
@@ -80,9 +80,11 @@ export class PreguntadosComponent implements OnInit {
             })
         ).subscribe({
             next: (res: any) => {
+                // Validamos que la respuesta tenga el formato esperado antes de acceder a sus propiedades
                 if (res && res.results && res.results.length > 0) {
                     const item = res.results[0];
 
+                    // Decodificamos las entidades HTML para mostrar caracteres especiales correctamente
                     const preguntaLimpia = this.decodificarHTML(item.question);
                     const respuestaCorrectaLimpia = this.decodificarHTML(item.correct_answer);
                     const incorrectasLimpias = item.incorrect_answers.map((ans: string) => this.decodificarHTML(ans));
@@ -91,10 +93,11 @@ export class PreguntadosComponent implements OnInit {
                         question: preguntaLimpia,
                         correct_answer: respuestaCorrectaLimpia
                     });
-                    
+                    // Mezclamos la respuesta correcta con las incorrectas para mostrar opciones en orden aleatorio
                     const todasOpciones = [...incorrectasLimpias, respuestaCorrectaLimpia];
                     todasOpciones.sort(() => Math.random() - 0.5);
 
+                    // Actualizamos las opciones en el estado
                     this.opciones.set(todasOpciones);
                     this.ronda.update(r => r + 1);
                 }

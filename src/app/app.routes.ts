@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth-guard';
+import { adminGuard } from './guards/admin-guard';
 
 export const routes: Routes = [
   { 
@@ -45,6 +46,16 @@ export const routes: Routes = [
     path: 'click-juego',
     loadComponent: () => import('./components/juegos/click-juego/click-juego').then(m => m.ClickJuegoComponent),
     canActivate: [authGuard]
+  },
+  {
+    path: 'encuesta',
+    loadComponent: () => import('./components/encuesta/encuesta').then(m => m.EncuestaComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'ver-encuestas',
+    loadComponent: () => import('./components/ver-encuestas/ver-encuestas').then(m => m.VerEncuestasComponent),
+    canActivate: [adminGuard]
   },
   { 
     path: 'quien-soy', 

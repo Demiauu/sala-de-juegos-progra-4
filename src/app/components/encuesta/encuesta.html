@@ -1,0 +1,85 @@
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh; padding: 20px;">
+  <div class="glass-card p-4 shadow" style="max-width: 600px; width: 100%;">
+    
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">📋 Encuesta de Opinión</h2>
+      <p class="text-muted small">Tu feedback nos ayuda a mejorar la experiencia en la sala de juegos</p>
+    </div>
+
+    @if (mensajeError()) {
+      <div class="alert alert-danger text-center p-2 mb-3" style="font-size: 14px;">
+        {{ mensajeError() }}
+      </div>
+    }
+    @if (mensajeExito()) {
+      <div class="alert alert-success text-center p-2 mb-3" style="font-size: 14px;">
+        {{ mensajeExito() }}
+      </div>
+    }
+
+    <form #formEncuesta="ngForm" (ngSubmit)="enviarEncuesta()">
+      
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="inputNombreForm" placeholder="Nombre y Apellido" 
+               [(ngModel)]="encuesta.nombreApellido" name="nombreApellido" required>
+        <label for="inputNombreForm" class="text-dark">Nombre y Apellido</label>
+      </div>
+
+      <div class="row g-2 mb-3">
+        <div class="col-6">
+          <div class="form-floating">
+            <input type="number" class="form-control" id="inputEdadForm" placeholder="Edad" 
+                   [(ngModel)]="encuesta.edad" name="edad" required>
+            <label for="inputEdadForm" class="text-dark">Edad (18 a 98 años)</label>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="inputTelForm" placeholder="Teléfono" 
+                   [(ngModel)]="encuesta.telefono" name="telefono" required>
+            <label for="inputTelForm" class="text-dark">Teléfono (Máx 10 dígitos)</label>
+          </div>
+        </div>
+      </div>
+
+      <hr class="opacity-25 my-3">
+      <h5 class="fw-bold mb-3 text-white">Preguntas de Feedback</h5>
+
+      <div class="mb-3">
+        <label class="form-label text-white small fw-bold">1. ¿Qué te pareció la fluidez y el diseño de los juegos?</label>
+        <textarea class="form-control" rows="2" placeholder="Escribí tu opinión técnica acá..." 
+                  [(ngModel)]="encuesta.opinionJuegos" name="opinionJuegos" required></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label text-white small fw-bold d-block">2. ¿Cuál de los 4 juegos fue tu favorito?</label>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="juegoFav" id="radioAhorcado" value="Ahorcado" [(ngModel)]="encuesta.juegoFavorito" required>
+          <label class="form-check-label text-white small" for="radioAhorcado">Ahorcado</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="juegoFav" id="radioMayor" value="Mayor o Menor" [(ngModel)]="encuesta.juegoFavorito" required>
+          <label class="form-check-label text-white small" for="radioMayor">Mayor o Menor</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="juegoFav" id="radioPreguntados" value="Preguntados" [(ngModel)]="encuesta.juegoFavorito" required>
+          <label class="form-check-label text-white small" for="radioPreguntados">Preguntados</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="juegoFav" id="radioClick" value="Click Extremo" [(ngModel)]="encuesta.juegoFavorito" required>
+          <label class="form-check-label text-white small" for="radioClick">Click Extremo</label>
+        </div>
+      </div>
+
+      <div class="form-check form-switch mb-4">
+        <input class="form-check-input" type="checkbox" id="checkRecomienda" [(ngModel)]="encuesta.recomiendaSala" name="recomiendaSala">
+        <label class="form-check-label text-white small" for="checkRecomienda">¿Recomendarías esta sala de juegos a otros estudiantes de la UTN?</label>
+      </div>
+
+      <button class="btn btn-info w-100 py-2 fw-bold shadow" type="submit" [disabled]="!formEncuesta.valid">
+        Enviar Respuestas
+      </button>
+
+    </form>
+  </div>
+</div>

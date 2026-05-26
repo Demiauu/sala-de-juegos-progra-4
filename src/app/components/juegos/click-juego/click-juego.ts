@@ -67,7 +67,7 @@ export class ClickJuegoComponent implements OnInit, OnDestroy {
         // Suma puntos
         this.puntos.update(p => p + 10);
 
-        // 🏎️ Aceleramos el movimiento un 8% cada vez que acierta para testear los reflejos
+        // Aceleramos el movimiento un 8% cada vez que acierta, pero nunca menos de 350ms para que siga siendo jugable
         this.velocidadMovimiento = Math.max(350, this.velocidadMovimiento * 0.92); 
 
         // Forzamos un movimiento inmediato al clickear
@@ -80,6 +80,7 @@ export class ClickJuegoComponent implements OnInit, OnDestroy {
         const randomTop = Math.floor(Math.random() * 75) + 10;
         const randomLeft = Math.floor(Math.random() * 75) + 10;
 
+        // Actualizamos la posición del botón en el estado
         this.botonTop.set(`${randomTop}%`);
         this.botonLeft.set(`${randomLeft}%`);
     }
