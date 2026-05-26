@@ -23,6 +23,17 @@ export class Home {
 
       this.estaLogueado.set(!!user);
   }
+
+  public esAdmin(): boolean {
+    const usuario = this.auth.usuarioLogueado();
+    const email = usuario && typeof usuario === 'object' ? usuario.email : null;
+
+    const listaAdmins = [
+      'admin@test.com'];
+
+      return email ? listaAdmins.includes(email.toLowerCase().trim()) : false;
+    }
+
   // Función para navegar a la ruta del juego seleccionado, solo si el usuario está logueado. Si no está logueado, no hace nada.
   public entrarAJuego(rutaJuego: string) {
     if (this.auth.usuarioLogueado()) {

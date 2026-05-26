@@ -18,6 +18,21 @@
         }
       </button>
 
+      @if (AuthService.usuarioLogueado()) {
+        <button routerLink="/encuesta" class="btn btn-info btn-sm px-3 fw-bold text-dark">
+          📋 Encuesta
+        </button>
+
+        @if (
+          AuthService.usuarioLogueado()?.email === 'admin@test.com' || 
+          AuthService.usuarioLogueado()?.email === 'demian@admin.com'
+        ) {
+          <button routerLink="/ver-encuestas" class="btn btn-warning btn-sm px-3 fw-bold text-dark">
+            📊 Ver Encuestas
+          </button>
+        }
+      }
+
       <button routerLink="/quien-soy" class="btn btn-outline-light btn-sm px-3" style="color: var(--text-main); border-color: var(--glass-border);">Quién Soy</button>
 
       @if (!AuthService.usuarioLogueado()) {

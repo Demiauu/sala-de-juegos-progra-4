@@ -12,7 +12,7 @@ export const adminGuard: CanActivateFn = (route, state) => {
     'gaston.plazas@utn.com', 
     'admin@sala.com',
     'demian@admin.com',
-    'TU_CORREO_ACTUAL@ejemplo.com' // Cambialo por tu correo real de pruebas
+    'admin@test.com'
   ];
 
   // Escuchamos el estado real y vivo de Firebase Auth de forma asíncrona
@@ -23,13 +23,13 @@ export const adminGuard: CanActivateFn = (route, state) => {
 
       // Si el usuario existe y su correo está en la lista blanca, habilitamos el acceso
       if (emailUsuario && listaAdmins.includes(emailUsuario.toLowerCase().trim())) {
-        return true; // ✅ Acceso concedido
+        return true;
       }
 
       // Si no cumple, se lo rebota de forma limpia al Home
       console.warn(`Acceso bloqueado para: ${emailUsuario || 'Usuario no autenticado'}`);
       router.navigate(['/']);
-      return false; // ❌ Acceso denegado
+      return false;
     })
   );
 };
